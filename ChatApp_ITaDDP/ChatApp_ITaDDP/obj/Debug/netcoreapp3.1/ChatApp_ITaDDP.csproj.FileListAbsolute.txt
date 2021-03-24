@@ -1,0 +1,13 @@
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\bin\Debug\netcoreapp3.1\ChatApp_ITaDDP.exe
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\bin\Debug\netcoreapp3.1\ChatApp_ITaDDP.deps.json
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\bin\Debug\netcoreapp3.1\ChatApp_ITaDDP.runtimeconfig.json
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\bin\Debug\netcoreapp3.1\ChatApp_ITaDDP.runtimeconfig.dev.json
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\bin\Debug\netcoreapp3.1\ChatApp_ITaDDP.dll
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\bin\Debug\netcoreapp3.1\ChatApp_ITaDDP.pdb
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\obj\Debug\netcoreapp3.1\ChatApp_ITaDDP.csprojAssemblyReference.cache
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\obj\Debug\netcoreapp3.1\ChatApp_ITaDDP.AssemblyInfoInputs.cache
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\obj\Debug\netcoreapp3.1\ChatApp_ITaDDP.AssemblyInfo.cs
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\obj\Debug\netcoreapp3.1\ChatApp_ITaDDP.csproj.CoreCompileInputs.cache
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\obj\Debug\netcoreapp3.1\ChatApp_ITaDDP.dll
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\obj\Debug\netcoreapp3.1\ChatApp_ITaDDP.pdb
+C:\PC\EDUCATION\6_SEMESTR\ИТиРОД\LAB1\ChatApp_ITaDDP\ChatApp_ITaDDP\obj\Debug\netcoreapp3.1\ChatApp_ITaDDP.genruntimeconfig.cache
