@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChatApp_ITaDDP
@@ -15,41 +16,74 @@ namespace ChatApp_ITaDDP
         static Socket listeningSocket;
         static int msgCounter = 0;
         static List<Message> messagesList;
-        static bool successfulDelivery;
-        
-        
+        static bool successfulDelivery = false;
+        const int MAX_ATTEMPTS = 10;
+        static Task listeningTask;
+
+
         static void Main(string[] args)
         {
             Program program = new Program();
             _client = program.joinClient();
             messagesList = new List<Message>();
+            listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            listeningSocket.Bind(new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.localPort));
 
+            remotePoint = new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.remotePort);
             try
             {
-                listeningSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                listeningSocket.Bind(new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.localPort));
 
-                remotePoint = new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.remotePort);
-
-                Task listeningTask = new Task(Listen);
+                listeningTask = new Task(Listen);
                 listeningTask.Start();
 
                 while (true) 
                 {
-                    string msg = Console.ReadLine();
-                    var message = new Message(msg, msgCounter, _client.userName, MsgType.Data);
-
-                    byte[] data = Encoding.Unicode.GetBytes(message.ToString());
-                    messagesList.Add(message);
-                    msgCounter++;
-                    listeningSocket.SendTo(data, remotePoint);
-
+                    SendMessage();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public static void SendMessage() 
+        {
+            string msg = Console.ReadLine();
+            var message = new Message(msg, msgCounter, _client.userName, MsgType.Data);
+
+            byte[] data = Encoding.Unicode.GetBytes(message.ToString());
+            messagesList.Add(message);
+            msgCounter++;
+            listeningSocket.SendTo(data, remotePoint);
+
+            int att_counter = 1;
+            while (att_counter <= MAX_ATTEMPTS)
+            {
+                Thread.Sleep(1000);
+                if (successfulDelivery == false)
+                {
+                    Console.WriteLine("Message delivery error. Message not delivered");
+                    if (att_counter == MAX_ATTEMPTS)
+                    {
+                        Console.WriteLine("The number of attempts has been exhausted.");
+                        Exit();
+                        break;
+                    }
+
+                    listeningSocket.SendTo(data, remotePoint);
+                    att_counter++;
+                }
+                else
+                {
+                    successfulDelivery = false;
+                    break;
+                }
+            }
+        }
+        private static void Exit()
+        {
+            throw new NotImplementedException();
         }
 
         public Client joinClient()
@@ -86,25 +120,28 @@ namespace ChatApp_ITaDDP
 
                     IPEndPoint remoteFullIp = remoteIp as IPEndPoint;
                     Message message = new Message(builder.ToString());
-                    messagesList.Add(message);
-                    Console.WriteLine(message.ToString());
-                    msgCounter++;
 
                     if (message.type == MsgType.Data)
                     {
+                        var _remotePoint = new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.remotePort);
+                        var _response = new Message(" ", 100, " ", MsgType.Response);
+                        listeningSocket.SendTo(Encoding.Unicode.GetBytes(_response.ToString()), _remotePoint);
+
                         messagesList.Add(message);
                         Console.WriteLine(message.ToString());
                         msgCounter++;
                     }
-                    else 
+                    else if(message.type == MsgType.Response)
                     {
-                        Console.WriteLine(message.ToString());
+                        Console.WriteLine("Message delivered");
+                        successfulDelivery = true;
                     }
                 }
             }
-            catch (Exception ex)
+            finally
             {
-                Console.WriteLine(ex.Message);
+                listeningTask = new Task(Listen);
+                listeningTask.Start();
             }
         }
     }

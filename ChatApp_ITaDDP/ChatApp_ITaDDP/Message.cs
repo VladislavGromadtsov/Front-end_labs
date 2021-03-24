@@ -28,14 +28,7 @@ namespace ChatApp_ITaDDP
 
         public override string ToString() 
         {
-            if (this.type == MsgType.Data)
-            {
-                return id.ToString() + separator + text + separator + authorNickname + separator + ((int)type).ToString();
-            }
-            else
-            {
-                return ((int)type).ToString();
-            }
+            return id.ToString() + separator + text + separator + authorNickname + separator + ((int)type).ToString();
         }
 
         public Message (string data) 

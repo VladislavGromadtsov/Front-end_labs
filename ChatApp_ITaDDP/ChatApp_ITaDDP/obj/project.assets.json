@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\PC\\EDUCATION\\6_SEMESTR\\ИТиРОД\\LAB1\\ChatApp_ITaDDP\\ChatApp_ITaDDP\\ChatApp_ITaDDP.csproj",
+      "projectUniqueName": "C:\\Users\\groma\\Desktop\\Front-end_labs\\ChatApp_ITaDDP\\ChatApp_ITaDDP\\ChatApp_ITaDDP.csproj",
       "projectName": "ChatApp_ITaDDP",
-      "projectPath": "C:\\PC\\EDUCATION\\6_SEMESTR\\ИТиРОД\\LAB1\\ChatApp_ITaDDP\\ChatApp_ITaDDP\\ChatApp_ITaDDP.csproj",
+      "projectPath": "C:\\Users\\groma\\Desktop\\Front-end_labs\\ChatApp_ITaDDP\\ChatApp_ITaDDP\\ChatApp_ITaDDP.csproj",
       "packagesPath": "C:\\Users\\groma\\.nuget\\packages\\",
-      "outputPath": "C:\\PC\\EDUCATION\\6_SEMESTR\\ИТиРОД\\LAB1\\ChatApp_ITaDDP\\ChatApp_ITaDDP\\obj\\",
+      "outputPath": "C:\\Users\\groma\\Desktop\\Front-end_labs\\ChatApp_ITaDDP\\ChatApp_ITaDDP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
