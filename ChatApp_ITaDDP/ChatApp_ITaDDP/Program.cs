@@ -50,36 +50,48 @@ namespace ChatApp_ITaDDP
         public static void SendMessage() 
         {
             string msg = Console.ReadLine();
-            var message = new Message(msg, msgCounter, _client.userName, MsgType.Data);
-
-            byte[] data = Encoding.Unicode.GetBytes(message.ToString());
-            messagesList.Add(message);
-            msgCounter++;
-            listeningSocket.SendTo(data, remotePoint);
-
-            int att_counter = 1;
-            while (att_counter <= MAX_ATTEMPTS)
+            if (msg == "-h")
             {
-                Thread.Sleep(1000);
-                if (successfulDelivery == false)
+                messagesList.Sort();
+                foreach (var mes in messagesList)
                 {
-                    Console.WriteLine("Message delivery error. Message not delivered");
-                    if (att_counter == MAX_ATTEMPTS)
-                    {
-                        Console.WriteLine("The number of attempts has been exhausted.");
-                        Exit();
-                        break;
-                    }
-
-                    listeningSocket.SendTo(data, remotePoint);
-                    att_counter++;
-                }
-                else
-                {
-                    successfulDelivery = false;
-                    break;
+                    Console.WriteLine(mes.id + "/" + mes.authorNickname + "/" + mes.text);
                 }
             }
+            else 
+            {
+                var message = new Message(msg, msgCounter, _client.userName, MsgType.Data);
+
+                byte[] data = Encoding.Unicode.GetBytes(message.ToString());
+                messagesList.Add(message);
+                msgCounter++;
+                listeningSocket.SendTo(data, remotePoint);
+
+                int att_counter = 1;
+                while (att_counter <= MAX_ATTEMPTS)
+                {
+                    Thread.Sleep(1000);
+                    if (successfulDelivery == false)
+                    {
+                        Console.WriteLine("Message delivery error. Message not delivered");
+                        if (att_counter == MAX_ATTEMPTS)
+                        {
+                            Console.WriteLine("The number of attempts has been exhausted.");
+                            Exit();
+                            break;
+                        }
+
+                        listeningSocket.SendTo(data, remotePoint);
+                        att_counter++;
+                    }
+                    else
+                    {
+                        successfulDelivery = false;
+                        break;
+                    }
+                }
+            }
+            
         }
         private static void Exit()
         {
@@ -97,6 +109,7 @@ namespace ChatApp_ITaDDP
             Console.Write("Enter your nickname: ");
             var nickName = Console.ReadLine();
 
+            Console.WriteLine("To view chat history press -h");
             return new Client(localPort, remotePort, HOST, nickName);
         }
 
@@ -137,6 +150,10 @@ namespace ChatApp_ITaDDP
                         successfulDelivery = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             finally
             {

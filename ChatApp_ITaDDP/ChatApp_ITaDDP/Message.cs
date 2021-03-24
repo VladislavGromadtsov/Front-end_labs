@@ -10,7 +10,7 @@ namespace ChatApp_ITaDDP
         Response,
     }
 
-    class Message
+    class Message : IComparable<Message>
     {
         public string text { get; set; }
         public int id { get; set; }
@@ -38,6 +38,11 @@ namespace ChatApp_ITaDDP
             this.text = msg[1];
             this.authorNickname = msg[2];
             this.type = (MsgType)Int32.Parse(msg[3]);
+        }
+
+        public int CompareTo(Message msg)
+        {
+            return this.id.CompareTo(msg.id);
         }
     }
 
