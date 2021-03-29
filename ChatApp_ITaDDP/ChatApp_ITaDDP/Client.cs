@@ -10,6 +10,7 @@ namespace ChatApp_ITaDDP
         public int remotePort { get; set; }
         public string IPAddress { get; set; }
         public string userName { get; set; }
+        public bool stateConnected { get; set; }
 
         public Client(int localPort, int remotePort, string iPAddress, string clientsName)
         {
@@ -17,6 +18,8 @@ namespace ChatApp_ITaDDP
             this.remotePort = remotePort;
             IPAddress = iPAddress;
             this.userName = clientsName;
+            this.stateConnected = false;
+            stateConnected = false;
         }
     }
 }

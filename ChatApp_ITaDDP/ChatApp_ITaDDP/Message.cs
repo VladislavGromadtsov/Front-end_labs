@@ -8,6 +8,11 @@ namespace ChatApp_ITaDDP
     {
         Data,
         Response,
+        Connect,
+        Connected,
+        Disconnect,
+        Disconnected,
+        History,
     }
 
     class Message : IComparable<Message>
@@ -24,6 +29,14 @@ namespace ChatApp_ITaDDP
             this.id = id;
             this.authorNickname = authorNickname;
             this.type = type;
+        }
+
+        public Message(Message msg) 
+        {
+            this.id = msg.id;
+            this.text = msg.text;
+            this.authorNickname = msg.authorNickname;
+            this.type = MsgType.History;
         }
 
         public override string ToString() 

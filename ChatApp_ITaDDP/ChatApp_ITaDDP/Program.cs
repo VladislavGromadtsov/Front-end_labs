@@ -58,7 +58,17 @@ namespace ChatApp_ITaDDP
                     Console.WriteLine(mes.id + "/" + mes.authorNickname + "/" + mes.text);
                 }
             }
-            else 
+            else if (msg == "-c")
+            {
+                var connect_msg = new Message(" ", -2, " ", MsgType.Connect);
+                listeningSocket.SendTo(Encoding.Unicode.GetBytes(connect_msg.ToString()), remotePoint);
+            }
+            else if (msg == "-d") 
+            {
+                var disconnect_msg = new Message(" ", -4, " ", MsgType.Disconnect);
+                listeningSocket.SendTo(Encoding.Unicode.GetBytes(disconnect_msg.ToString()), remotePoint);
+            }
+            else
             {
                 var message = new Message(msg, msgCounter, _client.userName, MsgType.Data);
 
@@ -110,6 +120,8 @@ namespace ChatApp_ITaDDP
             var nickName = Console.ReadLine();
 
             Console.WriteLine("To view chat history press -h");
+            Console.WriteLine("To connect press -c");
+            Console.WriteLine("To disconnect press -h");
             return new Client(localPort, remotePort, HOST, nickName);
         }
 
@@ -144,10 +156,45 @@ namespace ChatApp_ITaDDP
                         Console.WriteLine(message.ToString());
                         msgCounter++;
                     }
-                    else if(message.type == MsgType.Response)
+                    else if (message.type == MsgType.Response)
                     {
                         Console.WriteLine("Message delivered");
                         successfulDelivery = true;
+                    }
+                    else if (message.type == MsgType.Connect)
+                    {
+                        var _remotePoint = new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.remotePort);
+                        var _connection = new Message(" ", -3, " ", MsgType.Connected);
+                        listeningSocket.SendTo(Encoding.Unicode.GetBytes(_connection.ToString()), _remotePoint);
+
+                        _client.stateConnected = true;
+                        Console.WriteLine("Another client is connected.");
+                        SendHistory();
+                    }
+                    else if (message.type == MsgType.Connected)
+                    {
+                        _client.stateConnected = true;
+                        Console.WriteLine("Successfully connected");
+                    }
+                    else if (message.type == MsgType.Disconnect)
+                    {
+                        var _remotePoint = new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.remotePort);
+                        var _disconnection = new Message(" ", -5, " ", MsgType.Disconnected);
+                        listeningSocket.SendTo(Encoding.Unicode.GetBytes(_disconnection.ToString()), _remotePoint);
+
+                        _client.stateConnected = false;
+                        Console.WriteLine("Another client left the chat.");
+                    }
+                    else if (message.type == MsgType.Disconnected)  
+                    {
+                        _client.stateConnected = false;
+                        System.Environment.Exit(0);
+                    }
+                    else if (message.type == MsgType.History) 
+                    {
+                        messagesList.Add(message);
+                        Console.WriteLine(message.ToString());
+                        msgCounter++;
                     }
                 }
             }
@@ -159,6 +206,22 @@ namespace ChatApp_ITaDDP
             {
                 listeningTask = new Task(Listen);
                 listeningTask.Start();
+            }
+        }
+
+        public static void SendHistory() 
+        {
+            if (messagesList.Count != 0)
+            {
+                var _remotePoint = new IPEndPoint(IPAddress.Parse(_client.IPAddress), _client.remotePort);
+                messagesList.Sort();
+                foreach (var msg in messagesList)
+                {
+                    var message = new Message(msg);
+                    byte[] _data = Encoding.Unicode.GetBytes(message.ToString());
+                    listeningSocket.SendTo(_data, _remotePoint);
+                    Thread.Sleep(200);
+                }
             }
         }
     }
