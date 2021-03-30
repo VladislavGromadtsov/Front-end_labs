@@ -121,29 +121,13 @@ namespace ChatApp_ITaDDP
 
             Console.WriteLine("To view chat history press -h");
             Console.WriteLine("To connect press -c");
-            Console.WriteLine("To disconnect press -h");
+            Console.WriteLine("To disconnect press -d");
             return new Client(localPort, remotePort, HOST, nickName);
         }
 
-        public static void Listen() 
+        public static void CheckMessage(StringBuilder builder, EndPoint remoteIp) 
         {
-            try
-            {
-                while (true) 
-                {
-                    StringBuilder builder = new StringBuilder();
-                    int bytes = 0;
-                    byte[] data = new byte[256];
-                    EndPoint remoteIp = new IPEndPoint(IPAddress.Any, _client.remotePort);
-
-                    do
-                    {
-                        bytes = listeningSocket.ReceiveFrom(data, ref remoteIp);
-                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
-                    }
-                    while (listeningSocket.Available > 0);
-
-                    IPEndPoint remoteFullIp = remoteIp as IPEndPoint;
+            IPEndPoint remoteFullIp = remoteIp as IPEndPoint;
                     Message message = new Message(builder.ToString());
 
                     if (message.type == MsgType.Data)
@@ -196,6 +180,27 @@ namespace ChatApp_ITaDDP
                         Console.WriteLine(message.ToString());
                         msgCounter++;
                     }
+        }
+        public static void Listen() 
+        {
+            try
+            {
+                while (true) 
+                {
+                    StringBuilder builder = new StringBuilder();
+                    int bytes = 0;
+                    byte[] data = new byte[256];
+                    EndPoint remoteIp = new IPEndPoint(IPAddress.Any, _client.remotePort);
+
+                    do
+                    {
+                        bytes = listeningSocket.ReceiveFrom(data, ref remoteIp);
+                        builder.Append(Encoding.Unicode.GetString(data, 0, bytes));
+                        CheckMessage(builder, remoteIp);
+                        builder.Clear();
+                    }
+                    while (listeningSocket.Available > 0);
+
                 }
             }
             catch (Exception ex)
@@ -220,7 +225,6 @@ namespace ChatApp_ITaDDP
                     var message = new Message(msg);
                     byte[] _data = Encoding.Unicode.GetBytes(message.ToString());
                     listeningSocket.SendTo(_data, _remotePoint);
-                    Thread.Sleep(200);
                 }
             }
         }

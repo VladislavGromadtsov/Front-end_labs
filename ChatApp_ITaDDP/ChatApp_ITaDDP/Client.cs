@@ -19,7 +19,6 @@ namespace ChatApp_ITaDDP
             IPAddress = iPAddress;
             this.userName = clientsName;
             this.stateConnected = false;
-            stateConnected = false;
         }
     }
 }
