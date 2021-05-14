@@ -31,11 +31,8 @@ header {
     justify-content: flex-end;
 }
 
-.navbar div {
-    padding: 5pt 10pt;
-}
-
 .navbar a {
+    margin: 5pt 10pt;
     padding: 10pt 0 10pt 0;
     text-align: center;
     font-size: 17pt;
@@ -176,9 +173,17 @@ h1 {
     margin-left: 40pt;
 }
 
+
+
 .collections-list-item .edit-button {
     font-size: 15pt;
     padding: 0 30pt 0 30pt;
+    margin: 3pt;
+}
+
+.collections-list-item .start-collection-button {
+    padding: 0 27pt 0 27pt;
+    font-size: 15pt;
     margin: 3pt;
 }
 
@@ -389,4 +394,8 @@ input:focus {
 
 select:focus {
     border-color: greenyellow;
+}
+
+.add-new-collection {
+    min-height: 125pt;
 }
