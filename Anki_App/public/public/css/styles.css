@@ -39,6 +39,13 @@ header {
     text-decoration: none;
 }
 
+.navbar a:focus {
+    border-color: lawngreen;
+    outline: 0;
+    background-color: darkgrey;
+    border-radius: 10pt;
+}
+
 .home_btn {
     text-align: center;
     font-size: 25pt;
@@ -398,4 +405,10 @@ select:focus {
 
 .add-new-collection {
     min-height: 125pt;
+}
+
+button:focus {
+    box-shadow: 0 0 0 2pt red;
+    transform: scale(1.03, 1.03);
+    transition-duration: 200ms; 
 }
