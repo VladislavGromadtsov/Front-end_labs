@@ -118,7 +118,9 @@ section {
 .card-info-save-button:active,
 #collection-form-save-button:active,
 .collection-play-buttons button:active,
-.sign-in-button:active
+.sign-in-button:active,
+#add-collection-button:active,
+#add-card-button:active
  {
     background-color: lawngreen;;
     transition: color 0s;
@@ -176,7 +178,9 @@ button {
     margin: 10pt;
 }
 
-h1 {
+h1,
+#add-collection-button,
+#add-card-button {
     margin-left: 40pt;
 }
 
@@ -198,6 +202,12 @@ h1 {
     font-size: 15pt;
     padding: 0 23pt 0 23pt;
     margin: 3pt;
+}
+
+#add-collection-button,
+#add-card-button {
+    font-size: 15pt;
+    padding: 0 50pt 0 50pt;
 }
 
 .card-form {
