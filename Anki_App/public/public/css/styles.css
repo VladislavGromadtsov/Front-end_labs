@@ -1,0 +1,425 @@
+html,
+body,
+main {
+    height: 100%;
+}
+
+html {
+    overflow: auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    background-color: whitesmoke;
+    overflow: auto;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8pt 16pt 8pt 16pt;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.navbar a {
+    margin: 5pt 10pt;
+    padding: 10pt 0 10pt 0;
+    text-align: center;
+    font-size: 17pt;
+    text-decoration: none;
+}
+
+.navbar a:focus {
+    border-color: lawngreen;
+    outline: 0;
+    background-color: darkgrey;
+    border-radius: 10pt;
+}
+
+.home_btn {
+    text-align: center;
+    font-size: 25pt;
+    padding: 15pt;
+    text-decoration: none;
+}
+
+header a
+ {
+    color: grey;
+}
+
+header a:hover,
+footer i:hover,
+.navbar-login a:hover {
+    color: lawngreen;
+    transition: 50ms;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    align-items: center;
+}
+
+footer .fa {
+    font-size: 24pt;
+    padding: 5pt 10pt 3pt 0;
+    color: black;
+}
+
+.site-sign {
+    color: black;
+    font-size: 12pt;
+    padding-left: 15pt;
+}
+
+section {
+    width: 100%;
+    overflow: auto;
+}
+
+.section-welcome-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.div-welcome,
+.div-statistics {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10pt;
+    background-color: darkgray;
+    margin: 25pt;
+    padding: 25pt;
+}
+
+#div-welcome__repeat-button {
+    font-size: 12pt;
+    padding: 5pt 12pt 5pt 12pt;
+}
+
+#div-welcome__repeat-button:active,
+.card-info-save-button:active,
+#collection-form-save-button:active,
+.collection-play-buttons button:active,
+.sign-in-button:active,
+#add-collection-button:active,
+#add-card-button:active
+ {
+    background-color: lawngreen;;
+    transition: color 0s;
+}
+
+button {
+    border-radius: 5pt;
+}
+
+.div-statistics div {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.div-statistics h3, span {
+    width: 50%;
+    text-align: center;
+}
+
+.div-statistics span{
+    border-radius: 5pt;
+    background-color: greenyellow;
+    font-size: 45pt;
+    margin: 5pt;
+}
+
+.collections-list {
+    list-style-type: none;
+    border-radius: 10pt;
+    background-color: darkgray;
+    margin: 20pt;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 200pt);
+    grid-gap: 30pt;
+
+}
+
+.collections-list a {
+    text-decoration: none;
+}
+
+.collections-list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: greenyellow;
+    border-radius: 10pt;
+    min-height: 100pt;
+
+    margin: 10pt;
+}
+
+h1,
+#add-collection-button,
+#add-card-button {
+    margin-left: 40pt;
+}
+
+
+
+.collections-list-item .edit-button {
+    font-size: 15pt;
+    padding: 0 30pt 0 30pt;
+    margin: 3pt;
+}
+
+.collections-list-item .start-collection-button {
+    padding: 0 27pt 0 27pt;
+    font-size: 15pt;
+    margin: 3pt;
+}
+
+.collections-list-item .delete-button {
+    font-size: 15pt;
+    padding: 0 23pt 0 23pt;
+    margin: 3pt;
+}
+
+#add-collection-button,
+#add-card-button {
+    font-size: 15pt;
+    padding: 0 50pt 0 50pt;
+}
+
+.card-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-info,
+.card-collection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card-info-front,
+.card-info-back {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10pt;
+    align-items: center;
+    padding: 15pt;
+    min-height: 200pt;
+    min-width: 200pt;
+    background-color: greenyellow;
+    margin: 50pt;
+}
+
+.card-info-back {
+    background-color: lightslategrey;
+}
+
+.card-info-front textarea,
+.card-info-back textarea {
+    background-color: rgb(141, 236, 86);
+    min-width: 175pt;
+    min-height: 150pt;
+    border-radius: 10pt;
+    padding: 5pt;
+}
+
+.card-info-front textarea {
+    background-color: silver;
+}
+
+.card-info-save-button {
+    font-size: 16pt;
+    margin: 15pt;
+    padding: 7pt 30pt;
+}
+
+.collection-form-name {
+    display: flex;
+    flex-direction: row;
+    margin-left: 40pt;
+}
+
+.collection-form-name input {
+    width: 300pt;
+    padding: 7pt;
+    font-size: 15pt;
+    border-radius: 10pt;
+}
+
+.collection-form-name button {
+    padding: 7pt 30pt;
+    border-radius: 13pt;
+    margin-left: 10pt;
+}
+
+.collection-play{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.collection-play-statistics {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10pt;
+    background-color: darkgray;
+    padding: 15pt;
+    min-height: 200pt;
+    min-width: 200pt;
+    margin: 50pt;
+
+}
+
+.collection-play-statistics span {
+    align-self: center;
+    font-size: 15pt;
+}
+
+.collection-play-statistics div {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+    justify-content: space-around;
+}
+
+.collection-play-statistics-score-time h2{
+    padding-top: 10pt;
+}
+
+.collection-play-statistics-res span{
+    border-radius: 5pt;
+    background-color: greenyellow;
+    font-size: 45pt;
+    margin: 20pt 5pt 0 5pt;
+    min-height: 75pt;
+    padding-top: 15pt;
+}
+
+.collection-play-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.collection-play-buttons button {
+    padding: 7pt 20pt 7pt 20pt;
+    margin: 10pt 20pt 10pt 20pt;
+}
+
+.login-page {
+    width: 100%;
+    height: 100%;;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+ 
+.login-form-inputs {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10pt;
+    background-color: darkgray;
+    padding: 15pt;
+    min-height: 200pt;
+    min-width: 200pt;
+}
+
+.navbar-login a{
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login-form-inputs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form-inputs-container input {
+    margin: 8pt;
+    font-size: 15pt;
+    text-align: center;
+    border-radius: 5pt;
+}
+
+.sign-in-button {
+    margin-top: 40pt;
+    padding: 5pt 15pt 5pt 15pt;
+}
+
+.app-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10pt;
+    background-color: darkgray;
+    padding: 15pt;
+    min-height: 200pt;
+    min-width: 200pt;
+    max-width: 300pt;
+    
+}
+
+.app-info h1 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 27pt;
+}
+
+.app-info p {
+    border-radius: 7pt;
+    background-color: greenyellow;
+    font-size: 17pt;
+}
+
+input:focus {
+    border-color: greenyellow;
+}
+
+select:focus {
+    border-color: greenyellow;
+}
+
+.add-new-collection {
+    min-height: 125pt;
+}
+
+button:focus {
+    box-shadow: 0 0 0 2pt red;
+    transform: scale(1.03, 1.03);
+    transition-duration: 200ms; 
+}
+
