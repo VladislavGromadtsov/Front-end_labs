@@ -17,4 +17,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ANKI_APP_49526 }}'
           channelId: live
           projectId: anki-app-49526
-          entryPoint : "./Anki_App"
+          entryPoint : "./Anki_App/public"
